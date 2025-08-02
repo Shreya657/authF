@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import api from '../utils/api'
 import { GoogleLogin } from '@react-oauth/google'
 import axios from "axios"
@@ -87,7 +87,7 @@ const Login = () => {
           required
         /> </div>
          <div class="forgot-password-container">
-        <a  class="forgot-password-link" href="/forgot-password">forgot password</a>
+        <Link  class="forgot-password-link" to="/forgot-password">forgot password</Link>
         </div>
       
         <button type="submit" class="submit-btn" id="submitBtn" disabled={loading}>
