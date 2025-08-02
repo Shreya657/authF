@@ -2,6 +2,7 @@ import { useState } from 'react';
 import api from '../utils/api';
 import './ForgotPassword.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
 
     try {
       const redirectUrl = window.location.origin; // base URL of your frontend
-      const res = await api.post('https://authapi-production-5094.up.railway.app/api/v1/users/forgot-password', {
+      const res = await axios.post('https://authapi-production-5094.up.railway.app/api/v1/users/forgot-password', {
         email,
         redirectUrl
       });
