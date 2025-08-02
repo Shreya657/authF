@@ -17,8 +17,8 @@ const ForgotPassword = () => {
     setError('');
 
     try {
-      const redirectUrl = "https://auth-f-kappa.vercel.app"; // base URL of your frontend
-      const res = await api.post('/forgot-password', {
+      const redirectUrl = window.location.origin; // base URL of your frontend
+      const res = await api.post('https://authapi-production-5094.up.railway.app/api/v1/users/forgot-password', {
         email,
         redirectUrl
       });
