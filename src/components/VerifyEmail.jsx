@@ -26,6 +26,7 @@ const VerifyEmail = () => {
       {message && <h2 style={{ color: 'green' }}>{message}</h2>}
       {error && <h2 style={{ color: 'red' }}>{error}</h2>}
     </div>
+    
   );
 };
 export default VerifyEmail;
