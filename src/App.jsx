@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard';
 import Logout from './components/Logout';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
+import VerifyEmail from './components/VerifyEmail';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/logout' element={<Logout/>}></Route>
                 <Route path="/forgot-password" element={<ForgotPassword/>} />
 <Route path="/reset-password/:token" element={<ResetPassword/>} />
+<Route path="/verify-email/:token" element={<VerifyEmail/>}></Route>
 
 
 

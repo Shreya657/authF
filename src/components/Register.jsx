@@ -28,17 +28,20 @@ const handleSubmit=async(e)=>{
     setLoading(true);
 
 try {
-  const response = await api.post('/register', formData);
+    const redirectUrl = window.location.origin;
+  const response = await api.post('/register', {
+        ...formData,
+      redirectUrl 
+});
   console.log("Registration successful");
+  //  redirectUrl: `${window.location.origin}/verify-email
 
   setIsRegistered(true);
-  setMessage("Registration successful");
-
+ setMessage("Registration successful! Please check your email to verify your account.");
   // ✅ Store access token
   localStorage.setItem("token", response.data?.data?.accessToken);
 
-  // ✅ Navigate to dashboard
-  navigate('/dashboard');
+
 
 } catch (error) {
   setError(error.response?.data?.message || 'Registration failed.');
@@ -104,12 +107,12 @@ const handleGoogleLogin = async () => {
          {/* <p>{message}</p> */}
 
       </form>
-
+{/* 
         {isRegistered && (
-        <button class="dashboard-btn" onClick={() => navigate('/dashboard')}>
-          Go to Dashboard
-        </button>
-      )}
+        // <button class="dashboard-btn" onClick={() => navigate('/dashboard')}>
+        //   Go to Dashboard
+        // </button>
+      )} */}
       
 
       {/* <button onClick={handleGoogleLogin}>continue with google</button> */}
