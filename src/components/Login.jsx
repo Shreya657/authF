@@ -4,17 +4,24 @@ import api from '../utils/api'
 import { GoogleLogin } from '@react-oauth/google'
 import axios from "axios"
 import './Login.css'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 
 const Login = () => {
 
   const navigate=useNavigate()
+    const[showPassword,setShowPassword]=useState(false);
+  
   const[input,setInput]=useState({identifier:'',password:''})
   const[loading,setLoading]=useState(false)
   const[error,setError]=useState('')
   const handleChange=(e)=>{
     setInput({...input,[e.target.name]:e.target.value})
   }
+  const toggleEye=()=>{
+  setShowPassword((prev)=>!prev);
+}
 
   const handleLogin=async(e)=>{
     e.preventDefault();
@@ -70,7 +77,7 @@ const Login = () => {
       <form class="form-container" onSubmit={handleLogin}>
         <div class="input-group">
         <input  class="form-input"
-          type="email"
+          type="text"
           name="identifier"
           placeholder="Enter email or username"
           value={input.identifier}
@@ -79,13 +86,24 @@ const Login = () => {
         /></div>
        <div class="input-group">
         <input  class="form-input"
-          type="password"
+            type={showPassword ? "text": "password"}
           name="password"
           placeholder="Enter password"
           value={input.password}
           onChange={handleChange}
           required
-        /> </div>
+        />  <span
+                onClick={toggleEye}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer'
+                }}
+              >
+                {showPassword ? <FaEye />: <FaEyeSlash/>}
+              </span></div>
          <div class="forgot-password-container">
         <Link  class="forgot-password-link" to="/forgot-password">forgot password</Link>
         </div>

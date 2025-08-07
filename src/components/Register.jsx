@@ -4,14 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import { GoogleLogin } from '@react-oauth/google'
 import './Register.css'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
+  const[showPassword,setShowPassword]=useState(false);
   const navigate=useNavigate()
 const[formData,setFormData]=useState({username:'',email:'',password:''})
 const[loading,setLoading]=useState(false)
 const[error,setError]=useState('')
 const[message,setMessage]=useState('')
 const[isRegistered,setIsRegistered]=useState(false)
+
+const toggleEye=()=>{
+  setShowPassword((prev)=>!prev);
+}
 
 
 const handleChange=(e)=>{
@@ -97,11 +103,25 @@ const handleGoogleLogin = async () => {
         
          <div class="input-group">
           <input   class="form-input"  name="password"
-          type="password"
+          type={showPassword ? "password": "text"}
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-          required/></div>
+          required/>
+          
+           <span
+        onClick={toggleEye}
+        style={{
+          position: 'absolute',
+          right: '10px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          cursor: 'pointer'
+        }}
+      >
+        {showPassword ? <FaEyeSlash/> : <FaEye />}
+      </span>
+          </div>
       
           <button  class="submit-btn" type='submit' disabled={loading || isRegistered}>{loading?'registering..':'register'}</button>
          {/* <p>{message}</p> */}
