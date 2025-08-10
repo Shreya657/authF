@@ -54,6 +54,7 @@ const MemberSince = () => {
         </div>
        <div class="header">
       <h1>hi im dashboard</h1>
+      
         <p class="subtitle">Welcome back! Here's your profile overview</p>
         </div>
          <div class="avatar-section">
