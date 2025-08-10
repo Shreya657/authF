@@ -44,26 +44,26 @@ const Login = () => {
   }
 
 
-  //   const handleSuccess = async (credentialResponse) => {
-  //   const idToken = credentialResponse.credential;
+    const handleSuccess = async (credentialResponse) => {
+    const idToken = credentialResponse.credential;
 
-  //   try {
-  //     const res = await axios.post(
-  //       'https://authapi-production-5094.up.railway.app/api/v1/users/google',
-  //       { idToken } // sending token in request body
-  //     );
+    try {
+      const res = await axios.post(
+        'https://authapi-production-5094.up.railway.app/api/v1/users/google',
+        { idToken } // sending token in request body
+      );
   
-  //     console.log('Login Success:', res.data);
-  //      const { user, accessToken } = res.data.data;
-  //   // Save token + user to localStorage
-  //   localStorage.setItem('token', res.data.data.accessToken); // or whole token obj
-  //   localStorage.setItem("user", JSON.stringify(user));
+      console.log('Login Success:', res.data);
+       const { user, accessToken } = res.data.data;
+    // Save token + user to localStorage
+    localStorage.setItem('token', res.data.data.accessToken); // or whole token obj
+    localStorage.setItem("user", JSON.stringify(user));
 
-  //     navigate('/dashboard')
-  //   } catch (err) {
-  //     console.error('Login failed:', err);
-  //   }
-  // };
+      navigate('/dashboard')
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
+  };
 
   return (
     <div class="login-container">
@@ -114,7 +114,7 @@ const Login = () => {
 
         </button>
       </form>
-{/* 
+{
        <GoogleLogin
         onSuccess={handleSuccess}
         onError={() => {
@@ -122,7 +122,7 @@ const Login = () => {
         }}
           ux_mode="popup"
   prompt="select_account"
-      /> */}
+      /> }
     
   
 

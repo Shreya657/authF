@@ -6,6 +6,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import './Register.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+
 const Register = () => {
   const[showPassword,setShowPassword]=useState(false);
   const navigate=useNavigate()
@@ -61,16 +62,26 @@ try {
 };
 
 
-const handleGoogleLogin = async () => {
-  // Suppose tu idToken le chuki hai Google se (yeh manually lena padega via Google Identity Services)
-  const idToken = "your_token_from_google"; // normally tu Google ke JS lib se leti hai
+    const handleSuccess = async (credentialResponse) => {
+    const idToken = credentialResponse.credential;
 
-  // Backend URL ke sath query params pass karo
-  const url = `https://your-backend.com/api/v1/users/google?idToken=${idToken}`;
+    try {
+      const res = await axios.post(
+        'https://authapi-production-5094.up.railway.app/api/v1/users/google',
+        { idToken } // sending token in request body
+      );
+  
+      console.log('Login Success:', res.data);
+       const { user, accessToken } = res.data.data;
+    // Save token + user to localStorage
+    localStorage.setItem('token', res.data.data.accessToken); // or whole token obj
+    localStorage.setItem("user", JSON.stringify(user));
 
-  // Redirect to backend
-  window.location.href = url;
-};
+      navigate('/dashboard')
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
+  };
 
 
   return (
@@ -127,15 +138,19 @@ const handleGoogleLogin = async () => {
          {/* <p>{message}</p> */}
 
       </form>
-{/* 
-        {isRegistered && (
-        // <button class="dashboard-btn" onClick={() => navigate('/dashboard')}>
-        //   Go to Dashboard
-        // </button>
-      )} */}
-      
+  
 
-      {/* <button onClick={handleGoogleLogin}>continue with google</button> */}
+   {
+          <GoogleLogin
+           onSuccess={handleSuccess}
+           onError={() => {
+             console.log('Login Failed');
+           }}
+             ux_mode="popup"
+     prompt="select_account"
+       text="signup_with"
+         /> }
+
     </div>
   )
 }
