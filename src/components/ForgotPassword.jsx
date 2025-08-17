@@ -19,7 +19,7 @@ const ForgotPassword = () => {
 
     try {
       const redirectUrl = window.location.origin; // base URL of your frontend
-      const res = await axios.post('https://authapi-production-5094.up.railway.app/api/v1/users/forgot-password', {
+      const res = await axios.post('https://authapi-mkoe.onrender.com/api/v1/users/forgot-password', {
         email,
         redirectUrl
       });

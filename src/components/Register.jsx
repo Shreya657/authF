@@ -67,7 +67,7 @@ try {
 
     try {
       const res = await axios.post(
-        'https://authapi-production-5094.up.railway.app/api/v1/users/google',
+        'https://authapi-mkoe.onrender.com/api/v1/users/google',
         { idToken } // sending token in request body
       );
   
